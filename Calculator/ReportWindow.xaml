@@ -1,0 +1,17 @@
+﻿<Window x:Class="Calculator.ReportWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Calculator"
+        mc:Ignorable="d"
+        Title="ReportWindow" Height="507" Width="701" WindowStartupLocation="CenterScreen" WindowStyle="None" ResizeMode="NoResize">
+    <Grid>
+        <Button Content="Genereaza" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" FontSize="50" FontFamily="Arial Black" Height="205" Width="340" Background="#FF00FF61" Click="Button_Generate" Focusable="False"/>
+        <Button Content="Cancel" HorizontalAlignment="Left" Margin="10,362,0,0" VerticalAlignment="Top" Height="135" Width="680" FontSize="50" FontFamily="Arial Black" Background="Red" Click="Button_Cancel_Close" Focusable="False"/>
+        <Label Content="Selecteaza data raportului:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="45" FontFamily="Arial Black" Width="680"/>
+        <ComboBox x:Name="cbDate" HorizontalAlignment="Left" Margin="10,77,0,0" VerticalAlignment="Top" Width="680" Height="70" FontFamily="Arial Black" FontSize="50" Loaded="CbDate_Loaded"/>
+        <Button Content=" Sterge&#xD;&#xA;Folderul&#xD;&#xA;Selectat" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="50" FontFamily="Arial Black" Height="205" Width="335" Background="#FFA92146" Click="Button_DeleteFolder" Focusable="False" Margin="355,0,0,0"/>
+
+    </Grid>
+</Window>
