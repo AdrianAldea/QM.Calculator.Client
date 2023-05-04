@@ -16,9 +16,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Models", "Models\Models.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExcelHelper", "ExcelHelper\ExcelHelper.csproj", "{5FB0EF1F-6649-4848-A2F3-6D28A2DD2518}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QM.Inventory.TunnelsClient", "..\QM.InventoryWMS\QM.Inventory.TunnelsClient\QM.Inventory.TunnelsClient.csproj", "{FA8EB32D-B6FD-4A8E-A5BF-CE1E12081D22}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tunnels.Core", "..\QM.Tunnles.API\Tunnels.Core\Tunnels.Core.csproj", "{84CF487D-A6AC-4BAD-BD49-445AE1E342C9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tunnels.Core", "..\QM.Inventory.API\Tunnels.Core\Tunnels.Core.csproj", "{21B8B59B-EA0C-4EE7-BB78-05086C4C23B5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QM.Inventory.TunnelsClient", "..\QM.InventoryWMS.Client\QM.Inventory.TunnelsClient\QM.Inventory.TunnelsClient.csproj", "{D221B68C-B480-4725-A118-BDB31AD2CEC7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -42,14 +42,14 @@ Global
 		{5FB0EF1F-6649-4848-A2F3-6D28A2DD2518}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5FB0EF1F-6649-4848-A2F3-6D28A2DD2518}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5FB0EF1F-6649-4848-A2F3-6D28A2DD2518}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FA8EB32D-B6FD-4A8E-A5BF-CE1E12081D22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FA8EB32D-B6FD-4A8E-A5BF-CE1E12081D22}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FA8EB32D-B6FD-4A8E-A5BF-CE1E12081D22}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FA8EB32D-B6FD-4A8E-A5BF-CE1E12081D22}.Release|Any CPU.Build.0 = Release|Any CPU
-		{21B8B59B-EA0C-4EE7-BB78-05086C4C23B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{21B8B59B-EA0C-4EE7-BB78-05086C4C23B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{21B8B59B-EA0C-4EE7-BB78-05086C4C23B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{21B8B59B-EA0C-4EE7-BB78-05086C4C23B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84CF487D-A6AC-4BAD-BD49-445AE1E342C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84CF487D-A6AC-4BAD-BD49-445AE1E342C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84CF487D-A6AC-4BAD-BD49-445AE1E342C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84CF487D-A6AC-4BAD-BD49-445AE1E342C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D221B68C-B480-4725-A118-BDB31AD2CEC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D221B68C-B480-4725-A118-BDB31AD2CEC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D221B68C-B480-4725-A118-BDB31AD2CEC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D221B68C-B480-4725-A118-BDB31AD2CEC7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

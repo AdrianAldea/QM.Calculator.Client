@@ -167,17 +167,24 @@ namespace Calculator {
 
             if (double.TryParse(tbQty.Text, out double Qty) &&
                 double.TryParse(tbPrice.Text, out double Price) && lbProductList.SelectedItem != null) {
+
                 lblTxtTotal.Content = (Qty * Price).ToString();
-                var price = (tbPrice.Text != "" || tbPrice.Text != string.Empty) ? Convert.ToDouble(tbPrice.Text) : 0;
-                var quantity = (tbQty.Text != "" || tbQty.Text != string.Empty) ? Convert.ToDouble(tbQty.Text) : 0;
-                var total = price * quantity;
+                //var price = (tbPrice.Text != "" || tbPrice.Text != string.Empty) ? Convert.ToDouble(tbPrice.Text) : 0;
+                //var quantity = (tbQty.Text != "" || tbQty.Text != string.Empty) ? Convert.ToDouble(tbQty.Text) : 0;
+                var total = Price * Qty;
+
+                if (selectedProduct.Quantity - Qty < 0) {
+                    MessageBox.Show("Produsul nu contine stock suficient !");
+                    return;
+                }
+
                 SelectedProducts.Add(new Product {
                     Name = selectedProduct.Name,
                     Id = selectedProduct.Id,
                     DistributionCompany = selectedProduct.DistributionCompany,
                     CreatedDate = DateTime.Now,
-                    Price = price,
-                    Quantity = quantity,
+                    Price = Price,
+                    Quantity = selectedProduct.Quantity - Qty,
                     Total = total,
                     Type = ((ComboBoxItem)CbType.SelectedValue).Content.ToString()
                 });
@@ -232,13 +239,18 @@ namespace Calculator {
         private List<Tunnels.Core.Models.ProductEntry> MapToTunnelProducts(List<Product> selectedProducts) {
             List<Tunnels.Core.Models.ProductEntry> products = new List<Tunnels.Core.Models.ProductEntry>();
             foreach (Product product in selectedProducts) {
+
                 var newProduct = new Tunnels.Core.Models.ProductEntry {
                     DateAdded = product.CreatedDate,
                     ProductId = product.Id,
                     Price = product.Price,
                     Quantity = product.Quantity,
                     Total = product.Total,
-                    Type = product.Type
+                    Type = product.Type,
+                    Product = new Tunnels.Core.Models.Product {
+                        Id = product.Id,
+                        CurrentQuantity = product.Quantity
+                    }
                 };
 
                 products.Add(newProduct);
@@ -254,7 +266,9 @@ namespace Calculator {
                     CreatedDate = product.DateAdded,
                     DistributionCompany = product.DistributionCompany,
                     Name = product.Name,
+                    Quantity = product.CurrentQuantity,
                     Type = product.Type
+
                 };
 
                 products.Add(newProduct);
@@ -358,7 +372,7 @@ namespace Calculator {
         //}
 
         private async void lbProductList_Loaded(object sender, RoutedEventArgs e) {
-            Products = MapToCalculatorProducts(await TunnelsClient.GetAllProductsAsync());
+            Products = MapToCalculatorProducts(await TunnelsClient.GetAllProductsAsync(true));
             lbProductList.ItemsSource = Products;
             SortProductsList();
         }
@@ -405,7 +419,7 @@ namespace Calculator {
         }
 
         private async void btnRefresh_Click(object sender, RoutedEventArgs e) {
-            Products = MapToCalculatorProducts(await TunnelsClient.GetAllProductsAsync());
+            Products = MapToCalculatorProducts(await TunnelsClient.GetAllProductsAsync(true));
             lbProductList.ItemsSource = Products;
             SortProductsList();
         }

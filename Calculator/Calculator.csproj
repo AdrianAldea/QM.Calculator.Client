@@ -26,7 +26,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\QM.InventoryWMS\QM.Inventory.TunnelsClient\QM.Inventory.TunnelsClient.csproj" />
+    <ProjectReference Include="..\..\QM.InventoryWMS.Client\QM.Inventory.TunnelsClient\QM.Inventory.TunnelsClient.csproj" />
+    <ProjectReference Include="..\..\QM.Tunnles.API\Tunnels.Core\Tunnels.Core.csproj" />
     <ProjectReference Include="..\Database\Database.csproj" />
     <ProjectReference Include="..\ExcelHelper\ExcelHelper.csproj" />
     <ProjectReference Include="..\Models\Models.csproj" />
