@@ -13,6 +13,5 @@
         <PasswordBox x:Name="pbPassword" Margin="84,45,27,48"/>
         <Button x:Name="btnLogin" Content="Login" Margin="84,73,0,0" Click="btnLogin_Click" Height="25" VerticalAlignment="Top" HorizontalAlignment="Left" Width="84"/>
         <Button Content="Exit" Margin="173,0,27,17" Click="Button_Click" Height="25" VerticalAlignment="Bottom"/>
-
     </Grid>
 </Window>

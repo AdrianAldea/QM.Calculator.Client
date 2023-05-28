@@ -7,7 +7,6 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="1024" Width="1280" WindowState="Maximized" Closed="Window_Closed">
     <Grid>
-
         <ListBox x:Name="lbProductList" Margin="0,81,0,104" Width="389" HorizontalAlignment="Left" FontSize="40" FontFamily="Arial Black" ItemsSource="{Binding Products}" SelectionChanged="ProductList_SelectionChanged" Loaded="lbProductList_Loaded" d:ItemsSource="{d:SampleData ItemCount=5}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
@@ -74,7 +73,7 @@
                 <Style/>
             </Button.FocusVisualStyle>
         </Button>
-        <Button Content="Calculeaza" Margin="0,0,10,805" FontFamily="Arial Black" FontSize="30" Height="193" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="203" Click="Button_Calculate" Background="#FF198A88"/>
+        <Button x:Name="btnCalculate" Content="Calculeaza" Margin="0,10,10,0" FontFamily="Arial Black" FontSize="30" HorizontalAlignment="Right" Width="203" Click="Button_Calculate" Background="#FF198A88" Height="193" VerticalAlignment="Top"/>
         <Label Content="Cantitate: " HorizontalAlignment="Left" Margin="811,20,0,0" VerticalAlignment="Top" FontSize="40" FontFamily="Arial Black" Height="56" Width="251"/>
         <TextBox x:Name="tbQty" Margin="811,81,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="140" Height="67" FontSize="45" HorizontalAlignment="Left" FontFamily="Arial Black"/>
         <Button x:Name="btnClearQty" Content="Del" HorizontalAlignment="Left" Margin="956,76,0,0" VerticalAlignment="Top" Width="106" Height="72" FontSize="38" FontFamily="Arial Black" Click="btnClearQty_Click" Focusable="False" Background="Red"/>
@@ -83,15 +82,10 @@
         <Button x:Name="btnClearPrice" Content="Del" HorizontalAlignment="Left" Margin="957,162,0,0" VerticalAlignment="Top" Width="105" Height="66" FontSize="38" Click="btnClearPrice_Click" FontFamily="Arial Black" Focusable="False" Background="Red"/>
         <Label Content="Total RON" HorizontalAlignment="Left" Margin="775,433,0,0" VerticalAlignment="Top" FontSize="50" Width="286" FontFamily="Arial Black" Height="67"/>
         <Label x:Name="lblTxtTotal" Content="0" HorizontalAlignment="Left" Margin="674,502,0,0" VerticalAlignment="Top" FontSize="50" RenderTransformOrigin="4.816,0.475" Width="387" FontFamily="Arial Black" HorizontalContentAlignment="Right" Height="67"/>
-        <Button Content="Tipareste" Margin="0,809,10,10" FontFamily="Arial Black" FontSize="30" HorizontalAlignment="Right" Width="203" Click="Button_Print" Grid.ColumnSpan="2" Background="#FF5BCE1C"/>
+        <Button x:Name="btnPrint" Content="Tipareste" Margin="0,0,10,10" FontFamily="Arial Black" FontSize="30" HorizontalAlignment="Right" Width="203" Click="Button_Print" Background="#FF5BCE1C" Height="189" VerticalAlignment="Bottom"/>
         <!--<TextBox x:Name="tbAddItem" Margin="10,0,0,88" TextWrapping="Wrap" Height="69" VerticalAlignment="Bottom" FontSize="50" FontFamily="Arial Black" HorizontalAlignment="Left" Width="379" TouchDown="tbAddItem_TouchDown"/>-->
         <Label Content="Tip :" HorizontalAlignment="Left" Margin="818,299,0,0" VerticalAlignment="Top" FontSize="40" FontFamily="Arial Black" Height="56" Width="139"/>
-        <ComboBox Name="CbType"  HorizontalAlignment="Left" Margin="818,369,0,0" VerticalAlignment="Top" Width="244" Height="50" SelectedIndex="0" FontSize="34">
-            <ComboBoxItem Content="KG"/>
-            <ComboBoxItem Content="BAX"/>
-            <ComboBoxItem Content="BUC"/>
-            <ComboBoxItem Content="LEGATURA"/>
-        </ComboBox>
+        <TextBox Name="tbProductType" IsReadOnly="True" HorizontalAlignment="Left" Margin="818,369,0,0" VerticalAlignment="Top" Width="244" Height="50" FontSize="34"/>
         <DataGrid Language="en-US" Name ="dgSelectedProducts" Margin="396,569,219,10" ItemsSource="{Binding SelectedProducts, Mode=TwoWay}"  FontSize="20" AutoGenerateColumns="False" CanUserAddRows="False" CanUserResizeRows="False" CanUserSortColumns="False" CanUserReorderColumns="False" LostFocus="dgSelectedProducts_LostFocus">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Nume" Binding="{Binding Name}" Width="10*" />
@@ -110,10 +104,13 @@
         </DataGrid>
         <Button x:Name="btnReport" Content="Raport" Margin="0,0,10,204" Height="73" VerticalAlignment="Bottom" FontFamily="Arial Black" FontSize="50" Click="btnReport_Click" Background="#FF867EE8" HorizontalAlignment="Right" Width="203"/>
         <TextBox x:Name="tbSearchProduct" Margin="5,8,0,0" TextWrapping="Wrap" FontSize="50" FontFamily="Arial Black" TextChanged="tbSearchProduct_TextChanged" HorizontalAlignment="Left" Width="384" Height="68" VerticalAlignment="Top"/>
-        <Button x:Name="btnRefresh" HorizontalAlignment="Left" Margin="0,904,0,0" Width="113" Click="btnRefresh_Click">
+        <Button x:Name="btnRefresh" HorizontalAlignment="Left" Width="113" Click="btnRefresh_Click" Height="104" VerticalAlignment="Bottom">
             <Button.Background>
                 <ImageBrush ImageSource="/icons8-refresh-94.png"/>
             </Button.Background>
         </Button>
+        <Button x:Name="btnLogin" Content="LogIn" Margin="118,0,0,10"  Click="btnLogin_Click" Height="89" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="131"/>
+        <Button x:Name="btnLogout" Content="LogOut" Margin="254,0,0,10" Click="btnLogout_Click" Height="89" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="137"/>
+        <Label x:Name="lblConnectedUser" Content="Please LogIn !" Margin="0,0,10,282" HorizontalAlignment="Right" Width="204" Height="26" VerticalAlignment="Bottom"/>
     </Grid>
 </Window>
