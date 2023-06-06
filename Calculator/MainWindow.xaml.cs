@@ -219,7 +219,8 @@ namespace Calculator {
                     Quantity = products.Sum(x => x.Quantity),
                     Total = products.Sum(x => x.Total),
                     UserId = User.Id,
-                    ProductsEntries = products
+                    ProductsEntries = products,
+                    IsActive = true
                 };
                 var orderCreated = await TunnelsClient.CreateOrderWithProductAsync(order);
 
@@ -238,8 +239,8 @@ namespace Calculator {
                     });
                     id++;
                 }
-                CreateExcelFile.CreateExcelDocument(productsPrint, excelFilename);
-                Print(excelFilename, orderCreated.Id);
+                //CreateExcelFile.CreateExcelDocument(productsPrint, excelFilename);
+                //Print(excelFilename, orderCreated.Id);
 
                 ClearInterface();
                 SelectedProducts = new List<Product>();
@@ -345,8 +346,13 @@ namespace Calculator {
             //Set the Value BON NEFISCAL
             workbook.Worksheets[0].Range["C" + (lastFilledRow + 3)].Value = "BON NEFISCAL: ";
             workbook.Worksheets[0].Range["C" + (lastFilledRow + 3)].Style.Font.IsBold = true;
-            workbook.Worksheets[0].Range["C" + (lastFilledRow + 3)].Style.Font.Size = 40;
+            workbook.Worksheets[0].Range["C" + (lastFilledRow + 3)].Style.Font.Size = 20;
             workbook.Worksheets[0].Range["D" + (lastFilledRow + 3)].Value = orderCreatedId.ToString();
+
+            //Set the Value Date
+            workbook.Worksheets[0].Range["A" + (lastFilledRow + 4)].Value = DateTime.Now.ToString("dd/MM/yyyy HH:mm");
+            workbook.Worksheets[0].Range["A" + (lastFilledRow + 4)].Style.Font.IsBold = true;
+            workbook.Worksheets[0].Range["A" + (lastFilledRow + 4)].Style.Font.Size = 20;
 
             //Create a PrintDocument object based on the workbook
             PrintDocument printDocument = workbook.PrintDocument;
