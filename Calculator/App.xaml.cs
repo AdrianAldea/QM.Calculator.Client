@@ -10,8 +10,8 @@ namespace Calculator {
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-            DatabaseFacade databaseFacade = new DatabaseFacade(new DatabaseContext());
-            databaseFacade.EnsureCreatedAsync();
+            //DatabaseFacade databaseFacade = new DatabaseFacade(new DatabaseContext());
+            //databaseFacade.EnsureCreatedAsync();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using ExcelHelper;
+using Models;
 using QM.Inventory.TunnelsClient;
 using Spire.Xls;
 using System;
@@ -9,6 +10,7 @@ using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using Tunnels.Core.Models;
 using PageSetup = Spire.Xls.PageSetup;
 
@@ -25,7 +27,7 @@ namespace Calculator {
 
         private List<Product> _products = new List<Product>();
         private List<Product> _selectedProducts = new List<Product>();
-        private User User = null;
+        private Tunnels.Core.Models.User User = null;
 
         public List<Product> SelectedProducts {
             get {
@@ -178,6 +180,7 @@ namespace Calculator {
                 SelectedProducts.Add(new Product {
                     Name = selectedProduct.Name,
                     Id = selectedProduct.Id,
+                    Type = selectedProduct.Type,
                     DistributionCompany = selectedProduct.DistributionCompany,
                     CreatedDate = DateTime.Now,
                     Price = Price,
@@ -207,11 +210,6 @@ namespace Calculator {
                 if (!Directory.Exists(bonuriDailyDirectory))
                     Directory.CreateDirectory(bonuriDailyDirectory);
 
-                // Save to xlsx file
-                string excelFilename = bonuriDailyDirectory + "\\" + fileNameXlsx;
-                CreateExcelFile.CreateExcelDocument(SelectedProducts, excelFilename);
-                Print(excelFilename);
-
                 // Send To REST API
                 var products = MapToTunnelProducts(SelectedProducts);
                 var order = new Order() {
@@ -223,7 +221,25 @@ namespace Calculator {
                     UserId = User.Id,
                     ProductsEntries = products
                 };
-                await TunnelsClient.CreateOrderWithProductAsync(order);
+                var orderCreated = await TunnelsClient.CreateOrderWithProductAsync(order);
+
+                // Save to xlsx file
+                string excelFilename = bonuriDailyDirectory + "\\" + fileNameXlsx;
+                var productsPrint = new List<ProductsPrint>();
+                var id = 1;
+                foreach (var product in SelectedProducts) {
+                    productsPrint.Add(new ProductsPrint {
+                        Id = id,
+                        Nume = product.Name,
+                        Tip = product.Type,
+                        Cantitate = product.Quantity,
+                        Pret = product.Price,
+                        Total = product.Total
+                    });
+                    id++;
+                }
+                CreateExcelFile.CreateExcelDocument(productsPrint, excelFilename);
+                Print(excelFilename, orderCreated.Id);
 
                 ClearInterface();
                 SelectedProducts = new List<Product>();
@@ -275,7 +291,7 @@ namespace Calculator {
             return products;
         }
 
-        private void Print(string filepath) {
+        private void Print(string filepath,int orderCreatedId) {
             Spire.Xls.Workbook workbook = new Spire.Xls.Workbook();
             //Load an Excel file
             workbook.LoadFromFile(filepath);
@@ -320,7 +336,6 @@ namespace Calculator {
             //Set the Value of TOTAL
             workbook.Worksheets[0].Range["A" + (lastFilledRow + 1)].Value = "TOTAL :";
             workbook.Worksheets[0].Range["A" + (lastFilledRow + 1)].BorderAround(LineStyleType.Double);
-            workbook.Worksheets[0].Range["B" + (lastFilledRow + 1)].BorderAround(LineStyleType.Double);
             workbook.Worksheets[0].Range["C" + (lastFilledRow + 1)].BorderAround(LineStyleType.Double);
             workbook.Worksheets[0].Range["D" + (lastFilledRow + 1)].BorderAround(LineStyleType.Double);
             workbook.Worksheets[0].Range["E" + (lastFilledRow + 1)].BorderAround(LineStyleType.Double);
@@ -328,9 +343,10 @@ namespace Calculator {
             workbook.Worksheets[0].Range["E" + (lastFilledRow + 1)].Value = value;
 
             //Set the Value BON NEFISCAL
-            workbook.Worksheets[0].Range["C" + (lastFilledRow + 3)].Value = "BON NEFISCAL";
+            workbook.Worksheets[0].Range["C" + (lastFilledRow + 3)].Value = "BON NEFISCAL: ";
             workbook.Worksheets[0].Range["C" + (lastFilledRow + 3)].Style.Font.IsBold = true;
             workbook.Worksheets[0].Range["C" + (lastFilledRow + 3)].Style.Font.Size = 40;
+            workbook.Worksheets[0].Range["D" + (lastFilledRow + 3)].Value = orderCreatedId.ToString();
 
             //Create a PrintDocument object based on the workbook
             PrintDocument printDocument = workbook.PrintDocument;
@@ -403,6 +419,16 @@ namespace Calculator {
             Products = MapToCalculatorProducts(await TunnelsClient.GetAllProductsAsync(true));
             lbProductList.ItemsSource = Products;
             SortProductsList();
+        }
+
+        private void tbQty_KeyDown(object sender,KeyEventArgs e) {
+            if (e.Key == Key.Return || e.Key == Key.Return) {
+                tbPrice.Focus();
+            }
+        }
+
+        private void tbPrice_KeyDown(object sender, KeyEventArgs e) {
+
         }
     }
 }
