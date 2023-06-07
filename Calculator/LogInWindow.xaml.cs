@@ -16,7 +16,7 @@ namespace Calculator {
         private async void btnLogin_Click(object sender, RoutedEventArgs e) {
             User = await TunnelsClient.ValidateUsernameAndPassword(tbUsername.Text, pbPassword.Password);
             if (User?.Id == 0) {
-                MessageBox.Show("User not found !");
+                MessageBox.Show("Nu s-a gasit userul sau datele sunt gresite !");
             }
             else {
                 tbUsername.Text = string.Empty;
