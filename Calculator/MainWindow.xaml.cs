@@ -1,4 +1,5 @@
-﻿using ExcelHelper;
+﻿using DocumentFormat.OpenXml.Office2016.Drawing.ChartDrawing;
+using ExcelHelper;
 using Models;
 using QM.Inventory.TunnelsClient;
 using Spire.Xls;
@@ -14,11 +15,13 @@ using System.Windows.Input;
 using Tunnels.Core.Models;
 using PageSetup = Spire.Xls.PageSetup;
 
-namespace Calculator {
+namespace Calculator
+{
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : System.Windows.Window {
+    public partial class MainWindow : System.Windows.Window
+    {
         string bonuriDirectory = "bonuri";
         string dailyReportName = "raport";
         string dailyReportDirectory = "rapoarte";
@@ -29,57 +32,71 @@ namespace Calculator {
         private List<Product> _selectedProducts = new List<Product>();
         private Tunnels.Core.Models.User User = null;
 
-        public List<Product> SelectedProducts {
-            get {
+        public List<Product> SelectedProducts
+        {
+            get
+            {
                 return _selectedProducts;
             }
-            set {
+            set
+            {
                 _selectedProducts = value;
             }
         }
-        public List<Product> Products {
-            get {
+        public List<Product> Products
+        {
+            get
+            {
                 return _products;
             }
-            set {
+            set
+            {
                 _products = value;
             }
         }
 
-        public MainWindow() {
+        public MainWindow()
+        {
             InitializeComponent();
             SetupInit();
             ShowHideControls();
             DataContext = this;
         }
 
-        private void ShowHideControls() {
-            if (this.User != null) {
-                if (this.User.Role == RolesEnum.User) {
+        private void ShowHideControls()
+        {
+            if (this.User != null)
+            {
+                if (this.User.Role == RolesEnum.User)
+                {
                     btnReport.Visibility = Visibility.Hidden;
                     btnCalculate.Visibility = Visibility.Visible;
                     btnPrint.Visibility = Visibility.Visible;
                 }
-                else if (this.User.Role == RolesEnum.Administrator) {
+                else if (this.User.Role == RolesEnum.Administrator)
+                {
                     btnReport.Visibility = Visibility.Visible;
                     btnCalculate.Visibility = Visibility.Visible;
                     btnCalculate.Visibility = Visibility.Visible;
                     btnPrint.Visibility = Visibility.Visible;
                 };
             }
-            else {
+            else
+            {
                 btnReport.Visibility = Visibility.Hidden;
                 btnCalculate.Visibility = Visibility.Hidden;
                 btnPrint.Visibility = Visibility.Hidden;
             }
         }
 
-        private void SetupInit() {
+        private void SetupInit()
+        {
             ClearInterface();
             CreateDirectories();
         }
 
-        private async void CreateDirectories() {
+        private async void CreateDirectories()
+        {
             if (!Directory.Exists(bonuriDirectory))
                 Directory.CreateDirectory(bonuriDirectory);
 
@@ -87,43 +104,52 @@ namespace Calculator {
                 Directory.CreateDirectory(dailyReportDirectory);
 
             dailyReportPath = dailyReportDirectory + "\\" + dailyReportName + ".xlsx";
-            if (!File.Exists(dailyReportPath)) {
+            if (!File.Exists(dailyReportPath))
+            {
                 CreateExcelFile.CreateExcelDocument(new List<Product>(), dailyReportPath);
             }
         }
 
-        private void btnLogin_Click(object sender, RoutedEventArgs e) {
+        private void btnLogin_Click(object sender, RoutedEventArgs e)
+        {
             this.Hide();
 
             LogInWindow logInWindow = new LogInWindow(User);
             logInWindow.ShowDialog();
-            if (logInWindow.User != null) {
+            if (logInWindow.User != null)
+            {
                 User = logInWindow.User;
                 lblConnectedUser.Content = "Welcome: " + logInWindow.User.Name;
                 this.Show();
             }
-            else {
+            else
+            {
                 lblConnectedUser.Content = "Please LogIn !";
                 this.Show();
             }
             ShowHideControls();
         }
-        private void btnLogout_Click(object sender, RoutedEventArgs e) {
+        private void btnLogout_Click(object sender, RoutedEventArgs e)
+        {
             User = null;
             lblConnectedUser.Content = "Please LogIn !";
             ShowHideControls();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e) {
-            if (tbQty.IsFocused) {
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (tbQty.IsFocused)
+            {
                 tbQty.Text += ((System.Windows.Controls.Button)sender).Content.ToString();
                 tbQty.Focus();
             }
-            if (tbPrice.IsFocused) {
+            if (tbPrice.IsFocused)
+            {
                 tbPrice.Text += ((System.Windows.Controls.Button)sender).Content.ToString();
                 tbPrice.Focus();
             }
-            if (lbProductList.SelectedItem == null) {
+            if (lbProductList.SelectedItem == null)
+            {
                 MessageBox.Show("Selecteaza produsul din lista din stanga!");
                 tbPrice.Text = String.Empty;
                 tbQty.Text = String.Empty;
@@ -131,26 +157,32 @@ namespace Calculator {
         }
 
         #region Events
-        private void btnClearPrice_Click(object sender, RoutedEventArgs e) {
+        private void btnClearPrice_Click(object sender, RoutedEventArgs e)
+        {
             tbPrice.Text = String.Empty;
             tbPrice.Focus();
         }
-        private void btnClearQty_Click(object sender, RoutedEventArgs e) {
+        private void btnClearQty_Click(object sender, RoutedEventArgs e)
+        {
             tbQty.Text = string.Empty;
             tbQty.Focus();
         }
-        private void ProductList_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+        private void ProductList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
             tbQty.Text = string.Empty;
             tbPrice.Text = string.Empty;
             Product? selectedProduct = lbProductList.SelectedItem as Product;
-            if (selectedProduct != null) {
+            if (selectedProduct != null)
+            {
                 tbProductType.Text = selectedProduct.Type;
             }
         }
 
-        public void DeleteSelectedProduct(object sender, RoutedEventArgs e) {
+        public void DeleteSelectedProduct(object sender, RoutedEventArgs e)
+        {
             var selectedProduct = dgSelectedProducts.SelectedItem as Product;
-            if (selectedProduct != null) {
+            if (selectedProduct != null)
+            {
                 dgSelectedProducts.CancelEdit();
                 SelectedProducts.Remove(selectedProduct);
                 dgSelectedProducts.Items.Refresh();
@@ -159,25 +191,30 @@ namespace Calculator {
         }
 
 
-        private void Button_Calculate(object sender, RoutedEventArgs e) {
+        private void Button_Calculate(object sender, RoutedEventArgs e)
+        {
             var selectedProduct = lbProductList.SelectedItem as Product;
-            if (SelectedProducts.Any(x => x.Id == selectedProduct.Id)) {
+            if (SelectedProducts.Any(x => x.Id == selectedProduct.Id))
+            {
                 MessageBox.Show("Produsul e deja adaugat !");
                 return;
             }
 
             if (double.TryParse(tbQty.Text, out double Qty) &&
-                double.TryParse(tbPrice.Text, out double Price) && lbProductList.SelectedItem != null) {
+                double.TryParse(tbPrice.Text, out double Price) && lbProductList.SelectedItem != null)
+            {
 
                 lblTxtTotal.Content = (Qty * Price).ToString();
                 var total = Price * Qty;
 
-                if (selectedProduct.Quantity - Qty < 0) {
+                if (selectedProduct.Quantity - Qty < 0)
+                {
                     MessageBox.Show("Produsul nu contine stock suficient !");
                     return;
                 }
 
-                SelectedProducts.Add(new Product {
+                SelectedProducts.Add(new Product
+                {
                     Name = selectedProduct.Name,
                     Id = selectedProduct.Id,
                     Type = selectedProduct.Type,
@@ -194,13 +231,16 @@ namespace Calculator {
                 tbQty.Focus();
                 UpdateTotal();
             }
-            else {
+            else
+            {
                 MessageBox.Show("Completeaza Cantitatea, Pretul si selecteaza Produsul !");
             }
         }
 
-        private async void Button_Print(object sender, RoutedEventArgs e) {
-            if (dgSelectedProducts.Items != null && dgSelectedProducts.Items.Count > 0) {
+        private async void Button_Print(object sender, RoutedEventArgs e)
+        {
+            if (dgSelectedProducts.Items != null && dgSelectedProducts.Items.Count > 0)
+            {
                 // Create Paths
                 string fileNameWithoutExtension = "bon -" + DateTime.Now.ToString("dd-MM-yyyy HH-mm-ss");
                 string fileNameXlsx = fileNameWithoutExtension + ".xlsx";
@@ -212,7 +252,8 @@ namespace Calculator {
 
                 // Send To REST API
                 var products = MapToTunnelProducts(SelectedProducts);
-                var order = new Order() {
+                var order = new Order()
+                {
                     DateAdded = DateTime.Now,
                     OperationType = OperationTypeEnum.OUT,
                     Price = products.Sum(x => x.Price),
@@ -228,8 +269,10 @@ namespace Calculator {
                 string excelFilename = bonuriDailyDirectory + "\\" + fileNameXlsx;
                 var productsPrint = new List<ProductsPrint>();
                 var id = 1;
-                foreach (var product in SelectedProducts) {
-                    productsPrint.Add(new ProductsPrint {
+                foreach (var product in SelectedProducts)
+                {
+                    productsPrint.Add(new ProductsPrint
+                    {
                         Id = id,
                         Nume = product.Name,
                         Tip = product.Type,
@@ -239,8 +282,8 @@ namespace Calculator {
                     });
                     id++;
                 }
-                //CreateExcelFile.CreateExcelDocument(productsPrint, excelFilename);
-                //Print(excelFilename, orderCreated.Id);
+                CreateExcelFile.CreateExcelDocument(productsPrint, excelFilename);
+                Print(excelFilename, orderCreated.Id);
 
                 ClearInterface();
                 SelectedProducts = new List<Product>();
@@ -253,18 +296,22 @@ namespace Calculator {
             }
         }
 
-        private List<Tunnels.Core.Models.ProductEntry> MapToTunnelProducts(List<Product> selectedProducts) {
+        private List<Tunnels.Core.Models.ProductEntry> MapToTunnelProducts(List<Product> selectedProducts)
+        {
             List<Tunnels.Core.Models.ProductEntry> products = new List<Tunnels.Core.Models.ProductEntry>();
-            foreach (Product product in selectedProducts) {
+            foreach (Product product in selectedProducts)
+            {
 
-                var newProduct = new Tunnels.Core.Models.ProductEntry {
+                var newProduct = new Tunnels.Core.Models.ProductEntry
+                {
                     DateAdded = product.CreatedDate,
                     ProductId = product.Id,
                     Price = product.Price,
                     Quantity = product.Quantity,
                     Total = product.Total,
                     Type = product.Type,
-                    Product = new Tunnels.Core.Models.Product {
+                    Product = new Tunnels.Core.Models.Product
+                    {
                         Id = product.Id,
                         CurrentQuantity = product.Quantity
                     }
@@ -275,10 +322,13 @@ namespace Calculator {
             return products;
         }
 
-        private List<Product> MapToCalculatorProducts(List<Tunnels.Core.Models.Product> tunnelsProduct) {
+        private List<Product> MapToCalculatorProducts(List<Tunnels.Core.Models.Product> tunnelsProduct)
+        {
             List<Product> products = new List<Product>();
-            foreach (Tunnels.Core.Models.Product product in tunnelsProduct) {
-                var newProduct = new Product {
+            foreach (Tunnels.Core.Models.Product product in tunnelsProduct)
+            {
+                var newProduct = new Product
+                {
                     Id = product.Id,
                     CreatedDate = product.DateAdded,
                     DistributionCompany = product.DistributionCompany,
@@ -292,7 +342,8 @@ namespace Calculator {
             return products;
         }
 
-        private void Print(string filepath,int orderCreatedId) {
+        private void Print(string filepath, int orderCreatedId)
+        {
             Spire.Xls.Workbook workbook = new Spire.Xls.Workbook();
             //Load an Excel file
             workbook.LoadFromFile(filepath);
@@ -310,27 +361,29 @@ namespace Calculator {
 
             //sheet.LastRow returns the last row of the sheet.
             int lastFilledRow = worksheet.LastRow;
-            for (int i = worksheet.LastRow; i >= 0; i--) {
+            for (int i = worksheet.LastRow; i >= 0; i--)
+            {
                 CellRange cr = worksheet.Rows[i - 1].Columns[1];
-                if (!cr.IsBlank) {
+                if (!cr.IsBlank)
+                {
                     lastFilledRow = i;
                     break;
                 }
             }
             //to find the last filled row of this column
-            worksheet.Range["A1:E1"].Style.Font.IsBold = true;
-            worksheet.Range["A1:E1"].Style.Font.Underline = FontUnderlineType.DoubleAccounting;
+            worksheet.Range["A1:F1"].Style.Font.IsBold = true;
+            worksheet.Range["A1:F1"].Style.Font.Underline = FontUnderlineType.DoubleAccounting;
             worksheet.SetRowHeight(1, 50);
 
-            worksheet.Range["A1:E" + lastFilledRow + 1].Style.Font.Size = 30;
-            worksheet.Range["A1:E" + lastFilledRow + 1].Style.Font.Color = System.Drawing.Color.Black;
-            worksheet.Range["A1:E" + lastFilledRow + 1].Borders.Value = LineStyleType.None;
+            worksheet.Range["A1:F" + lastFilledRow + 1].Style.Font.Size = 40;
+            worksheet.Range["A1:F" + lastFilledRow + 1].Style.Font.Color = System.Drawing.Color.Black;
+            worksheet.Range["A1:F" + lastFilledRow + 1].Borders.Value = LineStyleType.None;
 
-            worksheet.Range["A1:E" + lastFilledRow + 1].AutoFitColumns();
+            worksheet.Range["A1:F" + lastFilledRow + 1].AutoFitColumns();
             worksheet.GridLinesVisible = true;
 
             // Caculate abosulte value function
-            string Formula = "=SUM(E1:E" + lastFilledRow + ")";
+            string Formula = "=SUM(F1:F" + lastFilledRow + ")";
             var formulaResult = workbook.CaculateFormulaValue(Formula);
             String value = formulaResult.ToString();
 
@@ -339,20 +392,60 @@ namespace Calculator {
             workbook.Worksheets[0].Range["A" + (lastFilledRow + 1)].BorderAround(LineStyleType.Double);
             workbook.Worksheets[0].Range["C" + (lastFilledRow + 1)].BorderAround(LineStyleType.Double);
             workbook.Worksheets[0].Range["D" + (lastFilledRow + 1)].BorderAround(LineStyleType.Double);
-            workbook.Worksheets[0].Range["E" + (lastFilledRow + 1)].BorderAround(LineStyleType.Double);
-            workbook.Worksheets[0].Range["E" + (lastFilledRow + 1)].NumberFormat = "#,##0.00";
-            workbook.Worksheets[0].Range["E" + (lastFilledRow + 1)].Value = value;
+            workbook.Worksheets[0].Range["F" + (lastFilledRow + 1)].BorderAround(LineStyleType.Double);
+            workbook.Worksheets[0].Range["F" + (lastFilledRow + 1)].NumberFormat = "#,##0.00";
+            workbook.Worksheets[0].Range["F" + (lastFilledRow + 1)].Value = value;
 
-            //Set the Value BON NEFISCAL
-            workbook.Worksheets[0].Range["C" + (lastFilledRow + 3)].Value = "BON NEFISCAL: ";
-            workbook.Worksheets[0].Range["C" + (lastFilledRow + 3)].Style.Font.IsBold = true;
-            workbook.Worksheets[0].Range["C" + (lastFilledRow + 3)].Style.Font.Size = 20;
-            workbook.Worksheets[0].Range["D" + (lastFilledRow + 3)].Value = orderCreatedId.ToString();
+            //Set Name Multiline
+            for (int i = 1; i <= lastFilledRow; i++)
+            {
+                string productName = workbook.Worksheets[0].Range["B" + i].Value;
+                if (productName.Length > 10)
+                {
+                    int nrOfWords = productName.Split(' ').Length;
+                    string[] words = productName.Split(' ');
+                    string productNameFormatted = string.Empty;
+
+                    for (int j = 0; j < nrOfWords; j += 3)
+                    {
+                        //if (words.Length > j + 2)
+                            productNameFormatted += words[j];
+                        try
+                        {
+                            productNameFormatted += ' ' + words[j + 1];
+
+                        }
+                        catch (Exception ex) { }
+                        try
+                        {
+                            productNameFormatted += ' ' + words[j + 2];
+                        }
+                        catch (Exception ex)
+                        {
+
+                        }
+                        productNameFormatted += '\n';
+                    }
+
+                    workbook.Worksheets[0].Range["B" + i].Value = productNameFormatted;
+                }
+            }
+
+
 
             //Set the Value Date
-            workbook.Worksheets[0].Range["A" + (lastFilledRow + 4)].Value = DateTime.Now.ToString("dd/MM/yyyy HH:mm");
-            workbook.Worksheets[0].Range["A" + (lastFilledRow + 4)].Style.Font.IsBold = true;
-            workbook.Worksheets[0].Range["A" + (lastFilledRow + 4)].Style.Font.Size = 20;
+            workbook.Worksheets[0].Range["B" + (lastFilledRow + 4)].Style.Font.IsBold = true;
+            workbook.Worksheets[0].Range["B" + (lastFilledRow + 4)].Style.Font.Size = 30;
+            workbook.Worksheets[0].Range["B" + (lastFilledRow + 4)].Style.HorizontalAlignment = HorizontalAlignType.Center;
+            workbook.Worksheets[0].Range["B" + (lastFilledRow + 4)].DateTimeValue = System.DateTime.Now; //ToString("dd/MM/yyyy HH:mm");
+            workbook.Worksheets[0].Range["B" + (lastFilledRow + 4)].NumberFormat = "mm/dd/yyyy HH:mm";
+
+            //Set the Value BON NEFISCAL
+            workbook.Worksheets[0].Range["B" + (lastFilledRow + 5)].Value = "BON NEFISCAL: " + orderCreatedId.ToString();
+            workbook.Worksheets[0].Range["B" + (lastFilledRow + 5)].Style.Font.IsBold = true;
+            workbook.Worksheets[0].Range["B" + (lastFilledRow + 5)].Style.Font.Size = 20;
+            //
+            worksheet.Range["A2:" + "A"+ lastFilledRow].VerticalAlignment = VerticalAlignType.Top;
 
             //Create a PrintDocument object based on the workbook
             PrintDocument printDocument = workbook.PrintDocument;
@@ -360,13 +453,15 @@ namespace Calculator {
             printDocument.Print();
         }
 
-        private void ClearInterface() {
+        private void ClearInterface()
+        {
             tbQty.Text = string.Empty;
             tbPrice.Text = string.Empty;
             lblTxtTotal.Content = 0.ToString();
         }
 
-        private void btnReport_Click(object sender, RoutedEventArgs e) {
+        private void btnReport_Click(object sender, RoutedEventArgs e)
+        {
             ReportWindow reportWindow = new ReportWindow();
             reportWindow.ShowDialog();
         }
@@ -374,13 +469,15 @@ namespace Calculator {
         private void UpdateTotal() =>
                 lblTxtTotal.Content = SelectedProducts.Select(x => x.Total).Sum();
 
-        private async void lbProductList_Loaded(object sender, RoutedEventArgs e) {
+        private async void lbProductList_Loaded(object sender, RoutedEventArgs e)
+        {
             Products = MapToCalculatorProducts(await TunnelsClient.GetAllProductsAsync(true));
             lbProductList.ItemsSource = Products;
             SortProductsList();
         }
 
-        private void SortProductsList() {
+        private void SortProductsList()
+        {
             List<Product> q = new List<Product>();
             foreach (Product o in lbProductList.Items)
                 q.Add(o);
@@ -390,50 +487,62 @@ namespace Calculator {
             lbProductList.Items.Refresh();
         }
 
-        private void tbSearchProduct_TextChanged(object sender, TextChangedEventArgs e) {
-            if (!string.IsNullOrWhiteSpace(tbSearchProduct.Text)) {
+        private void tbSearchProduct_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(tbSearchProduct.Text))
+            {
                 lbProductList.ItemsSource = null;
                 List<Product> sortedProducts = new List<Product>();
-                foreach (Product item in Products) {
-                    if (item.Name.ToLower().StartsWith(tbSearchProduct.Text.ToLower())) {
+                foreach (Product item in Products)
+                {
+                    if (item.Name.ToLower().StartsWith(tbSearchProduct.Text.ToLower()))
+                    {
                         sortedProducts.Add(item);
                     }
                 }
                 lbProductList.ItemsSource = sortedProducts;
             }
-            else if (string.IsNullOrWhiteSpace(tbSearchProduct.Text)) {
+            else if (string.IsNullOrWhiteSpace(tbSearchProduct.Text))
+            {
                 lbProductList.ItemsSource = null;
                 List<Product> sortedProducts = new List<Product>();
-                foreach (Product item in Products) {
+                foreach (Product item in Products)
+                {
                     sortedProducts.Add(item);
                 }
                 lbProductList.ItemsSource = sortedProducts;
             }
         }
 
-        private void dgSelectedProducts_LostFocus(object sender, RoutedEventArgs e) {
+        private void dgSelectedProducts_LostFocus(object sender, RoutedEventArgs e)
+        {
             var product = dgSelectedProducts.SelectedItem as Product;
             product.Total = product.Price * product.Quantity;
             UpdateTotal();
         }
 
-        private void Window_Closed(object sender, EventArgs e) {
+        private void Window_Closed(object sender, EventArgs e)
+        {
             Application.Current.Shutdown();
         }
 
-        private async void btnRefresh_Click(object sender, RoutedEventArgs e) {
+        private async void btnRefresh_Click(object sender, RoutedEventArgs e)
+        {
             Products = MapToCalculatorProducts(await TunnelsClient.GetAllProductsAsync(true));
             lbProductList.ItemsSource = Products;
             SortProductsList();
         }
 
-        private void tbQty_KeyDown(object sender,KeyEventArgs e) {
-            if (e.Key == Key.Return || e.Key == Key.Return) {
+        private void tbQty_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Return || e.Key == Key.Return)
+            {
                 tbPrice.Focus();
             }
         }
 
-        private void tbPrice_KeyDown(object sender, KeyEventArgs e) {
+        private void tbPrice_KeyDown(object sender, KeyEventArgs e)
+        {
 
         }
     }

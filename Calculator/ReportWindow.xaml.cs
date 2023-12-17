@@ -1,4 +1,5 @@
-﻿using OfficeOpenXml;
+﻿using ExcelHelper;
+using OfficeOpenXml;
 using Spire.Xls;
 using System;
 using System.Collections.Generic;
@@ -107,9 +108,9 @@ namespace Calculator {
             }
 
             double TotalPrice = destDt.AsEnumerable().Sum(row => row.Field<double>("Total"));
-            //totalSumDt.Columns.Add("Data");
-            //totalSumDt.Columns.Add("TOTAL");
-            //totalSumDt.Rows.Add(DateTime.Now.ToString(), TotalPrice);
+            totalSumDt.Columns.Add("Data");
+            totalSumDt.Columns.Add("TOTAL");
+            totalSumDt.Rows.Add(DateTime.Now.ToString(), TotalPrice);
 
             string dailyReportName = $"raport - {dailyDirectory}" + ".txt";
 
@@ -117,20 +118,20 @@ namespace Calculator {
             {
                 writer.WriteLine($"Data: {dailyReportDirectory}, TOTAL: {TotalPrice}");
             }
-            //CreateExcelFile.CreateExcelDocument(totalSumDt, dailyReportDirectory + "\\" + dailyReportName);
-            using (Process p = new Process())
-            {
-                p.StartInfo = new ProcessStartInfo()
-                {
-                    CreateNoWindow = true,
-                    UseShellExecute = true,
-                    Verb = "print",
-                    FileName = @Directory.GetCurrentDirectory() + @"\" + dailyReportDirectory + @"\" + dailyReportName
-                };
+            CreateExcelFile.CreateExcelDocument(totalSumDt, dailyReportDirectory + "\\" + dailyReportName);
+            //using (Process p = new Process())
+            //{
+            //    p.StartInfo = new ProcessStartInfo()
+            //    {
+            //        CreateNoWindow = true,
+            //        UseShellExecute = true,
+            //        Verb = "print",
+            //        FileName = @Directory.GetCurrentDirectory() + @"\" + dailyReportDirectory + @"\" + dailyReportName
+            //    };
 
-                p.Start();
-            }
-            //OpenPrintDialog(dailyReportDirectory + "\\" + dailyReportName);
+            //    p.Start();
+            //}
+            OpenPrintDialog(dailyReportDirectory + "\\" + dailyReportName);
         }
     }
 }

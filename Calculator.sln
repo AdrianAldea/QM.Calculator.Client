@@ -16,9 +16,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Models", "Models\Models.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExcelHelper", "ExcelHelper\ExcelHelper.csproj", "{5FB0EF1F-6649-4848-A2F3-6D28A2DD2518}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tunnels.Core", "..\QM.Tunnles.API\Tunnels.Core\Tunnels.Core.csproj", "{84CF487D-A6AC-4BAD-BD49-445AE1E342C9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QM.Inventory.TunnelsClient", "..\wms\QM.Inventory.TunnelsClient\QM.Inventory.TunnelsClient.csproj", "{F854EAAB-2FDC-40B1-8F6B-76C8571F1429}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QM.Inventory.TunnelsClient", "..\QM.InventoryWMS.Client\QM.Inventory.TunnelsClient\QM.Inventory.TunnelsClient.csproj", "{D221B68C-B480-4725-A118-BDB31AD2CEC7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tunnels.Core", "..\Tunnels\Tunnels.Core\Tunnels.Core.csproj", "{020F4DFD-301A-48F6-9777-AAA985416DD5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -42,14 +42,14 @@ Global
 		{5FB0EF1F-6649-4848-A2F3-6D28A2DD2518}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5FB0EF1F-6649-4848-A2F3-6D28A2DD2518}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5FB0EF1F-6649-4848-A2F3-6D28A2DD2518}.Release|Any CPU.Build.0 = Release|Any CPU
-		{84CF487D-A6AC-4BAD-BD49-445AE1E342C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{84CF487D-A6AC-4BAD-BD49-445AE1E342C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{84CF487D-A6AC-4BAD-BD49-445AE1E342C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{84CF487D-A6AC-4BAD-BD49-445AE1E342C9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D221B68C-B480-4725-A118-BDB31AD2CEC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D221B68C-B480-4725-A118-BDB31AD2CEC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D221B68C-B480-4725-A118-BDB31AD2CEC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D221B68C-B480-4725-A118-BDB31AD2CEC7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F854EAAB-2FDC-40B1-8F6B-76C8571F1429}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F854EAAB-2FDC-40B1-8F6B-76C8571F1429}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F854EAAB-2FDC-40B1-8F6B-76C8571F1429}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F854EAAB-2FDC-40B1-8F6B-76C8571F1429}.Release|Any CPU.Build.0 = Release|Any CPU
+		{020F4DFD-301A-48F6-9777-AAA985416DD5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{020F4DFD-301A-48F6-9777-AAA985416DD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{020F4DFD-301A-48F6-9777-AAA985416DD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{020F4DFD-301A-48F6-9777-AAA985416DD5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
