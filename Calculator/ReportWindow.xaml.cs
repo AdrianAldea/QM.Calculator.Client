@@ -11,7 +11,8 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace Calculator {
+namespace Calculator
+{
     /// <summary>
     /// Interaction logic for ReportWindow.xaml
     /// </summary>
@@ -99,12 +100,21 @@ namespace Calculator {
                 ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
                 using var source = new ExcelPackage(fInfoSrc);
                 var srcWorksheet = source.Workbook.Worksheets[0];
-                DataTable sourceDt = srcWorksheet.Cells[1, 1, srcWorksheet.Dimension.End.Row, srcWorksheet.Dimension.End.Column].ToDataTable(c =>
+                try
                 {
-                    c.FirstRowIsColumnNames = true;
-                });
 
-                destDt.Merge(sourceDt);
+                    DataTable sourceDt = srcWorksheet.Cells[1, 1, srcWorksheet.Dimension.End.Row, srcWorksheet.Dimension.End.Column].ToDataTable(c =>
+                    {
+                        c.FirstRowIsColumnNames = true;
+                    });
+
+                    destDt.Merge(sourceDt);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    continue;
+                }
             }
 
             double TotalPrice = destDt.AsEnumerable().Sum(row => row.Field<double>("Total"));
@@ -113,12 +123,13 @@ namespace Calculator {
             totalSumDt.Rows.Add(DateTime.Now.ToString(), TotalPrice);
 
             string dailyReportName = $"raport - {dailyDirectory}" + ".txt";
+            string dailyReportNameExcel = $"raport - {dailyDirectory}" + ".xlsx";
 
             using (StreamWriter writer = new StreamWriter(dailyReportDirectory + "\\" + dailyReportName))
             {
                 writer.WriteLine($"Data: {dailyReportDirectory}, TOTAL: {TotalPrice}");
             }
-            CreateExcelFile.CreateExcelDocument(totalSumDt, dailyReportDirectory + "\\" + dailyReportName);
+            CreateExcelFile.CreateExcelDocument(totalSumDt, dailyReportDirectory + "\\" + dailyReportNameExcel);
             //using (Process p = new Process())
             //{
             //    p.StartInfo = new ProcessStartInfo()
@@ -131,7 +142,7 @@ namespace Calculator {
 
             //    p.Start();
             //}
-            OpenPrintDialog(dailyReportDirectory + "\\" + dailyReportName);
+            OpenPrintDialog(dailyReportDirectory + "\\" + dailyReportNameExcel);
         }
     }
 }
