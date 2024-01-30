@@ -204,8 +204,8 @@ namespace Calculator
                 double.TryParse(tbPrice.Text, out double Price) && lbProductList.SelectedItem != null)
             {
 
-                lblTxtTotal.Content = (Qty * Price).ToString();
-                var total = Price * Qty;
+                var total = (Price * Qty).ToString("0.##");
+                lblTxtTotal.Content = total;
 
                 if (selectedProduct.Quantity - Qty < 0)
                 {
@@ -222,7 +222,7 @@ namespace Calculator
                     CreatedDate = DateTime.Now,
                     Price = Price,
                     Quantity = Qty,
-                    Total = total
+                    Total = Convert.ToDouble(total)
                 });
 
                 dgSelectedProducts.Items.Refresh();
