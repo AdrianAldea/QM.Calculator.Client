@@ -1,15 +1,18 @@
 ﻿using ExcelHelper;
 using OfficeOpenXml;
+using QM.Inventory.TunnelsClient;
 using Spire.Xls;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing.Printing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using Tunnels.Core.Models;
 
 namespace Calculator
 {
@@ -47,22 +50,33 @@ namespace Calculator
             }
         }
 
-        private void Button_Generate(object sender, RoutedEventArgs e)
+        private async void Button_Generate(object sender, RoutedEventArgs e)
         {
             if (cbDate.ItemsSource != null)
             {
                 string dailyDirectory = cbDate.SelectedItem.ToString();
                 string bonuriDailyDirectory = bonuriDirectory + "\\" + dailyDirectory;
 
-                // Load Excel Reports
-                List<string> xlsxFiles = Directory.GetFiles(bonuriDailyDirectory, "*.*", SearchOption.AllDirectories)
-                  .Where(file => new string[] { ".xlsx" }
-                  .Contains(System.IO.Path.GetExtension(file)))
-                  .ToList(); // Looking into directory and filtering files
-
-                if (xlsxFiles.Any())
+                //// Load Excel Reports
+                //List<string> xlsxFiles = Directory.GetFiles(bonuriDailyDirectory, "*.*", SearchOption.AllDirectories)
+                //  .Where(file => new string[] { ".xlsx" }
+                //  .Contains(System.IO.Path.GetExtension(file)))
+                //  .ToList(); // Looking into directory and filtering files
+                var dateNow = DateTime.ParseExact(dailyDirectory, "dd-MM-yyyy", new CultureInfo("en-US"));
+                var sum = await TunnelsClient.GetSumOfOrders(new OrdersWithProductsFilterRequest
                 {
-                    CreateDailyRaport(xlsxFiles, dailyDirectory);
+                    StartDate = dateNow,
+                    EndDate = dateNow,
+                    IsActive = true,
+                    IsOrderActive = true,
+                    FilterType = FilterTypeEnum.ByDate,
+                    OperationType = OperationTypeEnum.OUT
+                });
+
+                if (dailyDirectory != null)
+                {
+                    CreateDailyRaportFromSum(sum);
+                   // Where(x => x.OperationType == OperationTypeEnum.OUT).Sum(x => x.TotalProduct).ToString("0.##");
 
                     MessageBox.Show("Raport Generat !");
                 }
@@ -126,6 +140,36 @@ namespace Calculator
             string dailyReportNameExcel = $"raport - {dailyDirectory}" + ".xlsx";
 
             using (StreamWriter writer = new StreamWriter(dailyReportDirectory + "\\" + dailyReportName))
+            {
+                writer.WriteLine($"Data: {dailyReportDirectory}, TOTAL: {TotalPrice}");
+            }
+            CreateExcelFile.CreateExcelDocument(totalSumDt, dailyReportDirectory + "\\" + dailyReportNameExcel);
+            //using (Process p = new Process())
+            //{
+            //    p.StartInfo = new ProcessStartInfo()
+            //    {
+            //        CreateNoWindow = true,
+            //        UseShellExecute = true,
+            //        Verb = "print",
+            //        FileName = @Directory.GetCurrentDirectory() + @"\" + dailyReportDirectory + @"\" + dailyReportName
+            //    };
+
+            //    p.Start();
+            //}
+            OpenPrintDialog(dailyReportDirectory + "\\" + dailyReportNameExcel);
+        }
+
+        private void CreateDailyRaportFromSum(double TotalPrice)
+        {
+            DataTable totalSumDt = new();
+
+            totalSumDt.Columns.Add("Data");
+            totalSumDt.Columns.Add("TOTAL");
+            totalSumDt.Rows.Add(DateTime.Now.ToString(), TotalPrice);
+
+            string dailyReportNameExcel = $"raport - {cbDate.SelectedItem.ToString()}" + ".xlsx";
+             
+            using (StreamWriter writer = new StreamWriter(dailyReportDirectory + "\\" + dailyReportNameExcel))
             {
                 writer.WriteLine($"Data: {dailyReportDirectory}, TOTAL: {TotalPrice}");
             }
