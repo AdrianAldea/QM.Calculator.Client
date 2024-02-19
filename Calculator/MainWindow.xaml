@@ -78,7 +78,7 @@
         <TextBox x:Name="tbQty" Margin="811,81,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="140" Height="67" FontSize="45" HorizontalAlignment="Left" FontFamily="Arial Black" KeyDown="tbQty_KeyDown"/>
         <Button x:Name="btnClearQty" Content="Del" HorizontalAlignment="Left" Margin="956,76,0,0" VerticalAlignment="Top" Width="106" Height="72" FontSize="38" FontFamily="Arial Black" Click="btnClearQty_Click" Focusable="False" Background="Red"/>
         <Label Content="Pret :" HorizontalAlignment="Left" Margin="818,162,0,0" VerticalAlignment="Top" FontSize="40" FontFamily="Arial Black" Height="56" Width="139"/>
-        <TextBox x:Name="tbPrice" HorizontalAlignment="Left" Margin="812,237,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="249" Height="45" FontSize="40" FontFamily="Arial Black" KeyDown="tbPrice_KeyDown"/>
+        <TextBox x:Name="tbPrice" HorizontalAlignment="Left" Margin="812,237,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="249" Height="45" FontSize="40" FontFamily="Arial Black"/>
         <Button x:Name="btnClearPrice" Content="Del" HorizontalAlignment="Left" Margin="957,162,0,0" VerticalAlignment="Top" Width="105" Height="66" FontSize="38" Click="btnClearPrice_Click" FontFamily="Arial Black" Focusable="False" Background="Red"/>
         <Label Content="Total RON" HorizontalAlignment="Left" Margin="775,433,0,0" VerticalAlignment="Top" FontSize="50" Width="286" FontFamily="Arial Black" Height="67"/>
         <Label x:Name="lblTxtTotal" Content="0" HorizontalAlignment="Left" Margin="674,502,0,0" VerticalAlignment="Top" FontSize="50" RenderTransformOrigin="4.816,0.475" Width="387" FontFamily="Arial Black" HorizontalContentAlignment="Right" Height="67"/>
@@ -86,7 +86,7 @@
         <!--<TextBox x:Name="tbAddItem" Margin="10,0,0,88" TextWrapping="Wrap" Height="69" VerticalAlignment="Bottom" FontSize="50" FontFamily="Arial Black" HorizontalAlignment="Left" Width="379" TouchDown="tbAddItem_TouchDown"/>-->
         <Label Content="Tip :" HorizontalAlignment="Left" Margin="818,299,0,0" VerticalAlignment="Top" FontSize="40" FontFamily="Arial Black" Height="56" Width="139"/>
         <TextBox Name="tbProductType" IsReadOnly="True" HorizontalAlignment="Left" Margin="818,369,0,0" VerticalAlignment="Top" Width="244" Height="50" FontSize="34"/>
-        <DataGrid Language="en-US" Name ="dgSelectedProducts" Margin="396,569,219,10" ItemsSource="{Binding SelectedProducts, Mode=TwoWay}"  FontSize="20" AutoGenerateColumns="False" CanUserAddRows="False" CanUserResizeRows="False" CanUserSortColumns="False" CanUserReorderColumns="False" LostFocus="dgSelectedProducts_LostFocus">
+        <DataGrid Language="en-US" Name ="dgSelectedProducts" Margin="396,569,219,10" ItemsSource="{Binding SelectedProducts, Mode=TwoWay}"  FontSize="20" AutoGenerateColumns="False" CanUserAddRows="False" CanUserResizeRows="False" CanUserSortColumns="False" CanUserReorderColumns="False" LostFocus="dgSelectedProducts_LostFocus" LoadingRow="dgSelectedProducts_LoadingRow">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Nume" Binding="{Binding Name}" Width="10*" />
                 <DataGridTextColumn Header="Tip" Binding="{Binding Type}" Width="8*" />

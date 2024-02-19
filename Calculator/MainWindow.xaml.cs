@@ -541,9 +541,9 @@ namespace Calculator
             }
         }
 
-        private void tbPrice_KeyDown(object sender, KeyEventArgs e)
+        private void dgSelectedProducts_LoadingRow(object sender, DataGridRowEventArgs e)
         {
-
+            e.Row.Header = (e.Row.GetIndex()).ToString();
         }
     }
 }
