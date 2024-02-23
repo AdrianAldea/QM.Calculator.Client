@@ -239,6 +239,8 @@ namespace Calculator
 
         private async void Button_Print(object sender, RoutedEventArgs e)
         {
+            try
+            {
             if (dgSelectedProducts.Items != null && dgSelectedProducts.Items.Count > 0)
             {
                 // Create Paths
@@ -293,6 +295,12 @@ namespace Calculator
                 Products = MapToCalculatorProducts(await TunnelsClient.GetAllProductsAsync(true));
                 lbProductList.ItemsSource = Products;
                 SortProductsList();
+            }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + Environment.NewLine + ex.StackTrace);
             }
         }
 
