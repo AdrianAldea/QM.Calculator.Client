@@ -29,44 +29,37 @@ namespace Calculator
             InitializeComponent();
         }
 
-        private void CbDate_Loaded(object sender, RoutedEventArgs e)
-        {
-            cbDate.ItemsSource = Directory.GetDirectories("bonuri").Select(x => x.Split("\\")[x.Split("\\").Length - 1]);
-            if (cbDate.ItemsSource != null)
-                cbDate.SelectedIndex = 0;
-        }
-
         private void Button_Cancel_Close(object sender, RoutedEventArgs e)
         {
             Close();
         }
         private void Button_DeleteFolder(object sender, RoutedEventArgs e)
         {
-            string folderToDelete = bonuriDirectory + "\\" + cbDate.SelectedItem.ToString();
-            if (Directory.Exists(folderToDelete))
-            {
-                Directory.Delete(folderToDelete, true);
-                cbDate.ItemsSource = Directory.GetDirectories(bonuriDirectory).Select(x => x.Split("\\")[x.Split("\\").Length - 1]);
-            }
+            //string folderToDelete = bonuriDirectory + "\\" + cbDate.SelectedItem.ToString();
+            //if (Directory.Exists(folderToDelete))
+            //{
+            //    Directory.Delete(folderToDelete, true);
+            //    cbDate.ItemsSource = Directory.GetDirectories(bonuriDirectory).Select(x => x.Split("\\")[x.Split("\\").Length - 1]);
+            //}
         }
 
         private async void Button_Generate(object sender, RoutedEventArgs e)
         {
-            if (cbDate.ItemsSource != null)
+            if (dpReportDate.SelectedDate != null)
             {
-                string dailyDirectory = cbDate.SelectedItem.ToString();
-                string bonuriDailyDirectory = bonuriDirectory + "\\" + dailyDirectory;
+                string dailyDirectory = dpReportDate.SelectedDate.ToString();
+                //string bonuriDailyDirectory = bonuriDirectory + "\\" + dailyDirectory;
 
                 //// Load Excel Reports
                 //List<string> xlsxFiles = Directory.GetFiles(bonuriDailyDirectory, "*.*", SearchOption.AllDirectories)
                 //  .Where(file => new string[] { ".xlsx" }
                 //  .Contains(System.IO.Path.GetExtension(file)))
                 //  .ToList(); // Looking into directory and filtering files
-                var dateNow = DateTime.ParseExact(dailyDirectory, "dd-MM-yyyy", new CultureInfo("en-US"));
+                //var dateNow = DateTime.ParseExact(dailyDirectory, "dd-MM-yyyy", new CultureInfo("en-US"));
                 var sum = await TunnelsClient.GetSumOfOrders(new OrdersWithProductsFilterRequest
                 {
-                    StartDate = dateNow,
-                    EndDate = dateNow,
+                    StartDate = dpReportDate.SelectedDate,
+                    EndDate = dpReportDate.SelectedDate,
                     IsActive = true,
                     IsOrderActive = true,
                     FilterType = FilterTypeEnum.ByDate,
@@ -167,12 +160,12 @@ namespace Calculator
             totalSumDt.Columns.Add("TOTAL");
             totalSumDt.Rows.Add(DateTime.Now.ToString(), TotalPrice);
 
-            string dailyReportNameExcel = $"raport - {cbDate.SelectedItem.ToString()}" + ".xlsx";
+            string dailyReportNameExcel = $"raport - {dpReportDate.SelectedDate?.ToString("dd-MM-yyyy")}" + ".xlsx";
              
-            using (StreamWriter writer = new StreamWriter(dailyReportDirectory + "\\" + dailyReportNameExcel))
-            {
-                writer.WriteLine($"Data: {dailyReportDirectory}, TOTAL: {TotalPrice}");
-            }
+            //using (StreamWriter writer = new StreamWriter(dailyReportDirectory + "\\" + dailyReportNameExcel))
+            //{
+            //    writer.WriteLine($"Data: {dailyReportDirectory}, TOTAL: {TotalPrice}");
+            //}
             CreateExcelFile.CreateExcelDocument(totalSumDt, dailyReportDirectory + "\\" + dailyReportNameExcel);
             //using (Process p = new Process())
             //{

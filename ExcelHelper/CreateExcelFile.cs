@@ -90,6 +90,15 @@ namespace ExcelHelper {
 
             return CreateExcelDocument(ds, xlsxFilePath);
         }
+
+        public static bool CreateExcelDocumentFromDataTable(DataTable dataTable, string xlsxFilePath)
+        {
+            DataSet ds = new DataSet();
+            ds.Tables.Add(dataTable);
+
+            return CreateExcelDocument(ds, xlsxFilePath);
+        }
+
         #region HELPER_FUNCTIONS
         //  This function is adapated from: http://www.codeguru.com/forum/showthread.php?t=450171
         //  My thanks to Carl Quirion, for making it "nullable-friendly".

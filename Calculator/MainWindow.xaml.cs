@@ -517,8 +517,11 @@ namespace Calculator
         private void dgSelectedProducts_LostFocus(object sender, RoutedEventArgs e)
         {
             var product = dgSelectedProducts.SelectedItem as Product;
-            product.Total = product.Price * product.Quantity;
-            UpdateTotal();
+            if(product != null)
+            {
+                product.Total = product.Price * product.Quantity;
+                UpdateTotal();
+            }
         }
 
         private void Window_Closed(object sender, EventArgs e)
@@ -543,7 +546,7 @@ namespace Calculator
 
         private void dgSelectedProducts_LoadingRow(object sender, DataGridRowEventArgs e)
         {
-            e.Row.Header = (e.Row.GetIndex()).ToString();
+            e.Row.Header = (e.Row.GetIndex() + 1).ToString();
         }
     }
 }
