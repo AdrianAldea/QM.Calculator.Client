@@ -10,8 +10,16 @@
         <Button Content="Genereaza" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" FontSize="50" FontFamily="Arial Black" Height="205" Width="340" Background="#FF00FF61" Click="Button_Generate" Focusable="False"/>
         <Button Content="Cancel" HorizontalAlignment="Left" Margin="10,362,0,0" VerticalAlignment="Top" Height="135" Width="680" FontSize="50" FontFamily="Arial Black" Background="Red" Click="Button_Cancel_Close" Focusable="False"/>
         <Label Content="Selecteaza data raportului:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="45" FontFamily="Arial Black" Width="680"/>
-        <ComboBox x:Name="cbDate" HorizontalAlignment="Left" Margin="10,77,0,0" VerticalAlignment="Top" Width="680" Height="70" FontFamily="Arial Black" FontSize="50" Loaded="CbDate_Loaded"/>
         <Button Content=" Sterge&#xD;&#xA;Folderul&#xD;&#xA;Selectat" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="50" FontFamily="Arial Black" Height="205" Width="335" Background="#FFA92146" Click="Button_DeleteFolder" Focusable="False" Margin="355,0,0,0"/>
-
+        <DatePicker Name="dpReportDate" HorizontalAlignment="Center" Margin="0,96,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Width="227" Height="25" FontSize="14" FontFamily="Arial Black">
+            <DatePicker.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="3" ScaleY="3"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </DatePicker.RenderTransform>
+        </DatePicker>
     </Grid>
 </Window>
