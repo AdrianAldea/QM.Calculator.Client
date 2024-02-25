@@ -18,75 +18,75 @@
         </ListBox>
         <!--<Button x:Name="btnAddItem" Content="Adauga" HorizontalAlignment="Left" Margin="10,0,0,10" RenderTransformOrigin="0.151,-1.501" Width="268" Click="BtnAdd_Click" Height="73" VerticalAlignment="Bottom" FontFamily="Arial Black" FontSize="50" Background="#FF22CC00"/>
         <Button x:Name="btnDelItem" Content="Sterge" HorizontalAlignment="Left" Margin="283,0,0,10" Width="264" Click="BtnDel_Click" Height="73" VerticalAlignment="Bottom" FontFamily="Arial Black" FontSize="50" Background="#FFF13838"/>-->
-        <Button Content="1" HorizontalAlignment="Left" Margin="396,20,0,0" VerticalAlignment="Top" Width="120" Height="120" FontSize="50" FontFamily="Arial Black" Click="Button_Click" Focusable="False">
+        <Button Content="1" HorizontalAlignment="Left" Margin="395,73,0,0" VerticalAlignment="Top" Width="120" Height="120" FontSize="50" FontFamily="Arial Black" Click="Button_Click" Focusable="False">
             <Button.FocusVisualStyle>
                 <Style/>
             </Button.FocusVisualStyle>
         </Button>
-        <Button Content="2" HorizontalAlignment="Left" Margin="536,20,0,0" VerticalAlignment="Top" Width="120" Height="120" FontSize="50" FontFamily="Arial Black" Click="Button_Click" Focusable="False">
+        <Button Content="2" HorizontalAlignment="Left" Margin="535,73,0,0" VerticalAlignment="Top" Width="120" Height="120" FontSize="50" FontFamily="Arial Black" Click="Button_Click" Focusable="False">
             <Button.FocusVisualStyle>
                 <Style/>
             </Button.FocusVisualStyle>
         </Button>
-        <Button Content="3" HorizontalAlignment="Left" Margin="674,20,0,0" VerticalAlignment="Top" Width="120" Height="120" FontSize="50" FontFamily="Arial Black" Click="Button_Click" Focusable="False">
+        <Button Content="3" HorizontalAlignment="Left" Margin="673,73,0,0" VerticalAlignment="Top" Width="120" Height="120" FontSize="50" FontFamily="Arial Black" Click="Button_Click" Focusable="False">
             <Button.FocusVisualStyle>
                 <Style/>
             </Button.FocusVisualStyle>
         </Button>
-        <Button Content="4" HorizontalAlignment="Left" Margin="394,162,0,0" VerticalAlignment="Top" Width="120" Height="120" FontSize="50" FontFamily="Arial Black" Click="Button_Click" Focusable="False">
+        <Button Content="4" HorizontalAlignment="Left" Margin="393,215,0,0" VerticalAlignment="Top" Width="120" Height="120" FontSize="50" FontFamily="Arial Black" Click="Button_Click" Focusable="False">
             <Button.FocusVisualStyle>
                 <Style/>
             </Button.FocusVisualStyle>
         </Button>
-        <Button Content="5" HorizontalAlignment="Left" Margin="536,162,0,0" VerticalAlignment="Top" Width="120" Height="120" FontSize="50" FontFamily="Arial Black" Click="Button_Click" Focusable="False">
+        <Button Content="5" HorizontalAlignment="Left" Margin="535,215,0,0" VerticalAlignment="Top" Width="120" Height="120" FontSize="50" FontFamily="Arial Black" Click="Button_Click" Focusable="False">
             <Button.FocusVisualStyle>
                 <Style/>
             </Button.FocusVisualStyle>
         </Button>
-        <Button Content="6" HorizontalAlignment="Left" Margin="674,162,0,0" VerticalAlignment="Top" Width="120" Height="120" FontSize="50" FontFamily="Arial Black" Click="Button_Click" Focusable="False">
+        <Button Content="6" HorizontalAlignment="Left" Margin="673,215,0,0" VerticalAlignment="Top" Width="120" Height="120" FontSize="50" FontFamily="Arial Black" Click="Button_Click" Focusable="False">
             <Button.FocusVisualStyle>
                 <Style/>
             </Button.FocusVisualStyle>
         </Button>
-        <Button Content="7" HorizontalAlignment="Left" Margin="394,299,0,0" VerticalAlignment="Top" Width="120" Height="120" FontSize="50" FontFamily="Arial Black" Click="Button_Click" Focusable="False">
+        <Button Content="7" HorizontalAlignment="Left" Margin="393,352,0,0" VerticalAlignment="Top" Width="120" Height="120" FontSize="50" FontFamily="Arial Black" Click="Button_Click" Focusable="False">
             <Button.FocusVisualStyle>
                 <Style/>
             </Button.FocusVisualStyle>
         </Button>
-        <Button Content="8" HorizontalAlignment="Left" Margin="536,299,0,0" VerticalAlignment="Top" Width="120" Height="120" FontSize="50" FontFamily="Arial Black" Click="Button_Click" Focusable="False">
+        <Button Content="8" HorizontalAlignment="Left" Margin="535,352,0,0" VerticalAlignment="Top" Width="120" Height="120" FontSize="50" FontFamily="Arial Black" Click="Button_Click" Focusable="False">
             <Button.FocusVisualStyle>
                 <Style/>
             </Button.FocusVisualStyle>
         </Button>
-        <Button Content="9" HorizontalAlignment="Left" Margin="674,299,0,0" VerticalAlignment="Top" Width="120" Height="120" FontSize="50" FontFamily="Arial Black" Click="Button_Click" Focusable="False">
+        <Button Content="9" HorizontalAlignment="Left" Margin="673,352,0,0" VerticalAlignment="Top" Width="120" Height="120" FontSize="50" FontFamily="Arial Black" Click="Button_Click" Focusable="False">
             <Button.FocusVisualStyle>
                 <Style/>
             </Button.FocusVisualStyle>
         </Button>
-        <Button Content="0" HorizontalAlignment="Left" Margin="536,433,0,0" VerticalAlignment="Top" Width="120" Height="120" FontSize="50" FontFamily="Arial Black" Click="Button_Click" Focusable="False">
+        <Button Content="0" HorizontalAlignment="Left" Margin="535,486,0,0" VerticalAlignment="Top" Width="120" Height="120" FontSize="50" FontFamily="Arial Black" Click="Button_Click" Focusable="False">
             <Button.FocusVisualStyle>
                 <Style/>
             </Button.FocusVisualStyle>
         </Button>
-        <Button Content="." HorizontalAlignment="Left" Margin="396,433,0,0" VerticalAlignment="Top" Width="120" Height="120" FontSize="50" FontFamily="Arial Black" Click="Button_Click" Focusable="False">
+        <Button Content="." HorizontalAlignment="Left" Margin="395,486,0,0" VerticalAlignment="Top" Width="120" Height="120" FontSize="50" FontFamily="Arial Black" Click="Button_Click" Focusable="False">
             <Button.FocusVisualStyle>
                 <Style/>
             </Button.FocusVisualStyle>
         </Button>
         <Button x:Name="btnCalculate" Content="Calculeaza" Margin="0,10,10,0" FontFamily="Arial Black" FontSize="30" HorizontalAlignment="Right" Width="203" Click="Button_Calculate" Background="#FF198A88" Height="193" VerticalAlignment="Top"/>
-        <Label Content="Cantitate: " HorizontalAlignment="Left" Margin="811,20,0,0" VerticalAlignment="Top" FontSize="40" FontFamily="Arial Black" Height="56" Width="251"/>
-        <TextBox x:Name="tbQty" Margin="811,81,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="140" Height="67" FontSize="45" HorizontalAlignment="Left" FontFamily="Arial Black" KeyDown="tbQty_KeyDown"/>
-        <Button x:Name="btnClearQty" Content="Del" HorizontalAlignment="Left" Margin="956,76,0,0" VerticalAlignment="Top" Width="106" Height="72" FontSize="38" FontFamily="Arial Black" Click="btnClearQty_Click" Focusable="False" Background="Red"/>
-        <Label Content="Pret :" HorizontalAlignment="Left" Margin="818,162,0,0" VerticalAlignment="Top" FontSize="40" FontFamily="Arial Black" Height="56" Width="139"/>
-        <TextBox x:Name="tbPrice" HorizontalAlignment="Left" Margin="812,237,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="249" Height="45" FontSize="40" FontFamily="Arial Black"/>
-        <Button x:Name="btnClearPrice" Content="Del" HorizontalAlignment="Left" Margin="957,162,0,0" VerticalAlignment="Top" Width="105" Height="66" FontSize="38" Click="btnClearPrice_Click" FontFamily="Arial Black" Focusable="False" Background="Red"/>
-        <Label Content="Total RON" HorizontalAlignment="Left" Margin="775,433,0,0" VerticalAlignment="Top" FontSize="50" Width="286" FontFamily="Arial Black" Height="67"/>
-        <Label x:Name="lblTxtTotal" Content="0" HorizontalAlignment="Left" Margin="674,502,0,0" VerticalAlignment="Top" FontSize="50" RenderTransformOrigin="4.816,0.475" Width="387" FontFamily="Arial Black" HorizontalContentAlignment="Right" Height="67"/>
+        <Label Content="Cantitate: " HorizontalAlignment="Left" Margin="810,73,0,0" VerticalAlignment="Top" FontSize="40" FontFamily="Arial Black" Height="56" Width="251"/>
+        <TextBox x:Name="tbQty" Margin="810,134,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="140" Height="67" FontSize="45" HorizontalAlignment="Left" FontFamily="Arial Black" KeyDown="tbQty_KeyDown"/>
+        <Button x:Name="btnClearQty" Content="Del" HorizontalAlignment="Left" Margin="955,129,0,0" VerticalAlignment="Top" Width="106" Height="72" FontSize="38" FontFamily="Arial Black" Click="btnClearQty_Click" Focusable="False" Background="Red"/>
+        <Label Content="Pret :" HorizontalAlignment="Left" Margin="817,215,0,0" VerticalAlignment="Top" FontSize="40" FontFamily="Arial Black" Height="56" Width="139"/>
+        <TextBox x:Name="tbPrice" HorizontalAlignment="Left" Margin="811,290,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="249" Height="45" FontSize="40" FontFamily="Arial Black"/>
+        <Button x:Name="btnClearPrice" Content="Del" HorizontalAlignment="Left" Margin="956,215,0,0" VerticalAlignment="Top" Width="105" Height="66" FontSize="38" Click="btnClearPrice_Click" FontFamily="Arial Black" Focusable="False" Background="Red"/>
+        <Label Content="Total RON" HorizontalAlignment="Left" Margin="774,486,0,0" VerticalAlignment="Top" FontSize="50" Width="286" FontFamily="Arial Black" Height="67"/>
+        <Label x:Name="lblTxtTotal" Content="0" HorizontalAlignment="Left" Margin="673,555,0,0" VerticalAlignment="Top" FontSize="50" RenderTransformOrigin="4.816,0.475" Width="387" FontFamily="Arial Black" HorizontalContentAlignment="Right" Height="67"/>
         <Button x:Name="btnPrint" Content="Tipareste" Margin="0,0,10,10" FontFamily="Arial Black" FontSize="30" HorizontalAlignment="Right" Width="203" Click="Button_Print" Background="#FF5BCE1C" Height="189" VerticalAlignment="Bottom"/>
         <!--<TextBox x:Name="tbAddItem" Margin="10,0,0,88" TextWrapping="Wrap" Height="69" VerticalAlignment="Bottom" FontSize="50" FontFamily="Arial Black" HorizontalAlignment="Left" Width="379" TouchDown="tbAddItem_TouchDown"/>-->
-        <Label Content="Tip :" HorizontalAlignment="Left" Margin="818,299,0,0" VerticalAlignment="Top" FontSize="40" FontFamily="Arial Black" Height="56" Width="139"/>
-        <TextBox Name="tbProductType" IsReadOnly="True" HorizontalAlignment="Left" Margin="818,369,0,0" VerticalAlignment="Top" Width="244" Height="50" FontSize="34"/>
-        <DataGrid Language="en-US" Name ="dgSelectedProducts" Margin="396,569,219,10" ItemsSource="{Binding SelectedProducts, Mode=TwoWay}"  FontSize="20" AutoGenerateColumns="False" CanUserAddRows="False" CanUserResizeRows="False" CanUserSortColumns="False" CanUserReorderColumns="False" LostFocus="dgSelectedProducts_LostFocus" LoadingRow="dgSelectedProducts_LoadingRow">
+        <Label Content="Tip :" HorizontalAlignment="Left" Margin="817,352,0,0" VerticalAlignment="Top" FontSize="40" FontFamily="Arial Black" Height="56" Width="139"/>
+        <TextBox Name="tbProductType" IsReadOnly="True" HorizontalAlignment="Left" Margin="817,422,0,0" VerticalAlignment="Top" Width="244" Height="50" FontSize="34"/>
+        <DataGrid Language="en-US" Name ="dgSelectedProducts" Margin="396,622,219,10" ItemsSource="{Binding SelectedProducts, Mode=TwoWay}"  FontSize="20" AutoGenerateColumns="False" CanUserAddRows="False" CanUserResizeRows="False" CanUserSortColumns="False" CanUserReorderColumns="False" LostFocus="dgSelectedProducts_LostFocus" LoadingRow="dgSelectedProducts_LoadingRow">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Nume" Binding="{Binding Name}" Width="10*" />
                 <DataGridTextColumn Header="Tip" Binding="{Binding Type}" Width="8*" />
@@ -112,5 +112,6 @@
         <Button x:Name="btnLogin" Content="LogIn" Margin="118,0,0,10"  Click="btnLogin_Click" Height="89" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="131"/>
         <Button x:Name="btnLogout" Content="LogOut" Margin="254,0,0,10" Click="btnLogout_Click" Height="89" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="137"/>
         <Label x:Name="lblConnectedUser" Content="Please LogIn !" Margin="0,0,10,282" HorizontalAlignment="Right" Width="204" Height="26" VerticalAlignment="Bottom"/>
+        <Label Content="Nici un produs selectat" Name="lblProduct" HorizontalAlignment="Left" Margin="396,10,0,0" VerticalAlignment="Top" Height="66" Width="664" FontSize="48" FontFamily="Arial Black"/>
     </Grid>
 </Window>

@@ -175,6 +175,7 @@ namespace Calculator
             if (selectedProduct != null)
             {
                 tbProductType.Text = selectedProduct.Type;
+                lblProduct.Content = selectedProduct.Name;
             }
         }
 
