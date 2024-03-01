@@ -176,6 +176,8 @@ namespace Calculator
             {
                 tbProductType.Text = selectedProduct.Type;
                 lblProduct.Content = selectedProduct.Name;
+                lblQty.Content = selectedProduct.Quantity;
+                tbQty.Focus();
             }
         }
 

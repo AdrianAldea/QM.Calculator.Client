@@ -112,6 +112,7 @@
         <Button x:Name="btnLogin" Content="LogIn" Margin="118,0,0,10"  Click="btnLogin_Click" Height="89" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="131"/>
         <Button x:Name="btnLogout" Content="LogOut" Margin="254,0,0,10" Click="btnLogout_Click" Height="89" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="137"/>
         <Label x:Name="lblConnectedUser" Content="Please LogIn !" Margin="0,0,10,282" HorizontalAlignment="Right" Width="204" Height="26" VerticalAlignment="Bottom"/>
-        <Label Content="Nici un produs selectat" Name="lblProduct" HorizontalAlignment="Left" Margin="396,10,0,0" VerticalAlignment="Top" Height="66" Width="664" FontSize="48" FontFamily="Arial Black"/>
+        <Label Content="Nici un produs selectat" Name="lblProduct" HorizontalAlignment="Left" Margin="396,10,0,0" VerticalAlignment="Top" Height="58" Width="535" FontSize="40" FontFamily="Arial Black"/>
+        <Label Content="0" x:Name="lblQty" HorizontalContentAlignment="Right" Margin="936,10,218,0" VerticalAlignment="Top" Height="58" Width="126" FontSize="40" FontFamily="Arial Black"/>
     </Grid>
 </Window>
